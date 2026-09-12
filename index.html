@@ -6,21 +6,31 @@
 <title>Gửi lời chúc đến Thịnh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #F5F2EB;
+    --mint: #C8E6C4;
+    --mint2: #B2DFDB;
+    --pink: #F8BBD9;
+    --pink2: #F48FB1;
+    --blue: #BBDEFB;
+    --blue2: #90CAF9;
+    --white: #FAFAFA;
     --charcoal: #2C2A24;
-    --muted: #A89F8C;
+    --accent: #C06080;
+    --sage: #5B8A6F;
+    --sage-dark: #4A7460;
   }
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
-    background: var(--cream);
-    color: var(--charcoal);
-    font-family: 'Inter', sans-serif;
     min-height: 100%;
+    font-family: 'Nunito', sans-serif;
+    color: var(--charcoal);
+  }
+  body {
+    background: linear-gradient(180deg, #E8F5E9 0%, #FCE4EC 100%);
   }
   canvas#particles {
     position: fixed;
@@ -42,43 +52,51 @@
   }
   .card {
     width: 100%;
-    max-width: 480px;
-    background: rgba(255, 255, 255, 0.45);
-    border: 1px solid rgba(44, 42, 36, 0.08);
-    border-radius: 16px;
-    padding: 44px 36px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 20px 60px rgba(44, 42, 36, 0.06);
+    max-width: 460px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--pink);
+    border-radius: 24px;
+    padding: 40px 36px;
+    box-shadow: 0 20px 50px rgba(240, 150, 180, 0.18);
+    text-align: center;
+  }
+  .illustration {
+    width: 160px;
+    height: auto;
+    margin: 0 auto 16px;
+    display: block;
+    border: none;
   }
   .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-    margin-bottom: 14px;
+    color: var(--accent);
+    margin-bottom: 10px;
   }
   h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 28px;
-    text-align: center;
     margin: 0 0 12px;
     color: var(--charcoal);
   }
   .subtext {
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 400;
     line-height: 1.6;
-    color: var(--muted);
-    text-align: center;
-    margin: 0 0 32px;
+    color: #666;
+    margin: 0 0 28px;
+  }
+  form {
+    text-align: left;
   }
   label {
     display: block;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     margin-bottom: 8px;
-    color: var(--charcoal);
+    color: #444;
   }
   .field {
     margin-bottom: 20px;
@@ -86,12 +104,13 @@
   input[type="text"],
   textarea {
     width: 100%;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    padding: 12px 14px;
-    border: 1px solid rgba(44, 42, 36, 0.15);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.6);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 12px 16px;
+    border: 1.5px solid #E0E0E0;
+    border-radius: 12px;
+    background: var(--white);
     color: var(--charcoal);
     outline: none;
     transition: border-color 0.2s ease;
@@ -99,66 +118,61 @@
   }
   input[type="text"]:focus,
   textarea:focus {
-    border-color: var(--muted);
+    border-color: var(--pink2);
   }
   textarea {
     height: 120px;
-    font-family: 'Inter', sans-serif;
   }
   ::placeholder {
-    color: #B8AF9C;
+    color: #AAA;
+    font-weight: 400;
   }
   button {
     width: 100%;
     padding: 14px;
-    background: var(--charcoal);
-    color: var(--cream);
+    background: var(--sage);
+    color: #FFFFFF;
     border: none;
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: background 0.2s ease;
   }
   button:hover {
-    opacity: 0.88;
+    background: var(--sage-dark);
   }
   .thanks {
-    text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
   }
   .thanks h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: 26px;
-    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 22px;
+    margin: 4px 0 12px;
+    color: var(--charcoal);
   }
   .thanks p {
-    font-size: 13px;
-    color: var(--muted);
+    font-size: 15px;
+    font-weight: 400;
+    color: #666;
     line-height: 1.6;
   }
   .nav-link {
     display: block;
     text-align: center;
-    margin-top: 28px;
-    font-size: 12px;
-    color: var(--muted);
+    margin-top: 26px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #999;
     text-decoration: none;
-    letter-spacing: 0.02em;
   }
   .nav-link:hover {
-    color: var(--charcoal);
-  }
-  .error-msg {
-    font-size: 12px;
-    color: #A85C4D;
-    margin: -10px 0 16px;
+    color: var(--accent);
   }
   @media (max-width: 480px) {
     .card {
-      padding: 32px 22px;
+      padding: 32px 24px;
     }
   }
 </style>
@@ -167,11 +181,13 @@
 <canvas id="particles"></canvas>
 <div class="wrap">
   <div class="card">
-    <div class="eyebrow">lễ tốt nghiệp · 2026</div>
-    <h1>Gửi lời chúc đến Thịnh</h1>
-    <p class="subtext">Lời chúc của bạn sẽ được lưu lại và chỉ mình Thịnh đọc được.</p>
+    <img class="illustration" id="illustration" src="" alt="">
 
     <div id="formArea">
+      <div class="eyebrow">Lễ tốt nghiệp · 2026</div>
+      <h1>Gửi lời chúc đến Thịnh</h1>
+      <p class="subtext">Lời chúc của bạn sẽ được lưu lại và chỉ mình Thịnh đọc được.</p>
+
       <form id="wishForm">
         <div class="field">
           <label for="name">Tên của bạn</label>
@@ -190,10 +206,14 @@
 </div>
 
 <script>
+  // ---- Random illustration ----
+  const images = ['assets/img1.png', 'assets/img2.png', 'assets/img3.png'];
+  document.getElementById('illustration').src = images[Math.floor(Math.random() * images.length)];
+
   // ---- Particle animation ----
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
-  const colors = ['#C8B99A', '#D4C5A9', '#E2D8C5', '#B8A888', '#C9BB9F'];
+  const colors = ['#F8BBD9', '#BBDEFB', '#C8E6C4', '#FFF9C4'];
   let particles = [];
   let W, H;
 
@@ -208,17 +228,37 @@
     return {
       x: Math.random() * W,
       y: initial ? Math.random() * H : H + Math.random() * 40,
-      r: 1 + Math.random() * 2,
-      speed: 0.15 + Math.random() * 0.35,
+      r: 2 + Math.random() * 3,
+      heart: Math.random() < 0.35,
+      speed: 0.2 + Math.random() * 0.4,
       wobble: Math.random() * Math.PI * 2,
       wobbleSpeed: 0.005 + Math.random() * 0.01,
-      wobbleAmp: 0.3 + Math.random() * 0.6,
-      opacity: 0.15 + Math.random() * 0.25,
+      wobbleAmp: 0.3 + Math.random() * 0.7,
+      opacity: 0.3 + Math.random() * 0.2,
       color: colors[Math.floor(Math.random() * colors.length)]
     };
   }
 
   for (let i = 0; i < 60; i++) particles.push(makeParticle(true));
+
+  function drawHeart(x, y, size, color, opacity) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(size / 10, size / 10);
+    ctx.beginPath();
+    ctx.moveTo(0, 3);
+    ctx.bezierCurveTo(0, 1, -2, -2, -5, -2);
+    ctx.bezierCurveTo(-9, -2, -9, 3, -9, 3);
+    ctx.bezierCurveTo(-9, 6, -6, 9, 0, 12);
+    ctx.bezierCurveTo(6, 9, 9, 6, 9, 3);
+    ctx.bezierCurveTo(9, 3, 9, -2, 5, -2);
+    ctx.bezierCurveTo(2, -2, 0, 1, 0, 3);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.globalAlpha = opacity;
+    ctx.fill();
+    ctx.restore();
+  }
 
   function animate() {
     ctx.clearRect(0, 0, W, H);
@@ -232,11 +272,15 @@
         p.x = Math.random() * W;
       }
 
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.globalAlpha = p.opacity;
-      ctx.fill();
+      if (p.heart) {
+        drawHeart(p.x, p.y, p.r * 2.2, p.color, p.opacity);
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity;
+        ctx.fill();
+      }
     }
     ctx.globalAlpha = 1;
     requestAnimationFrame(animate);
@@ -246,6 +290,7 @@
   // ---- Wish form ----
   const form = document.getElementById('wishForm');
   const formArea = document.getElementById('formArea');
+  const illustrationSrc = document.getElementById('illustration').src;
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -263,8 +308,8 @@
 
     formArea.innerHTML = `
       <div class="thanks">
-        <h2>Cảm ơn bạn!</h2>
-        <p>Lời chúc của bạn đã được gửi đến Thịnh.</p>
+        <h2>Cảm ơn bạn! 🌸</h2>
+        <p>Lời chúc ấm áp của bạn đã được gửi đến Thịnh.<br>Chúc bạn một ngày thật vui!</p>
       </div>
     `;
   });
