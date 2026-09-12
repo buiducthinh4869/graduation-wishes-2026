@@ -288,7 +288,7 @@
   animate();
 
   // ---- Wish form ----
-  const STORAGE_KEY = 'graduation_wishes';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwIrdfYcFAESgUl5OIQZdGbdotb5d_-SkUAvOv1mbXTbn23ggKxSuAvvfBEnv6PMFEp/exec';
   const form = document.getElementById('wishForm');
   const formView = document.getElementById('formView');
   const thanksView = document.getElementById('thanksView');
@@ -296,8 +296,9 @@
   const wishError = document.getElementById('wishError');
   const nameInput = document.getElementById('name');
   const wishInput = document.getElementById('wish');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
     const name = nameInput.value.trim();
     const wish = wishInput.value.trim();
@@ -308,22 +309,36 @@
     }
     wishError.style.display = 'none';
 
-    const wishes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    wishes.push({
-      name: name || 'Ẩn danh',
-      wish: wish,
-      time: new Date().toISOString()
-    });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes));
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Đang gửi...';
 
-    thanksFrom.textContent = name ? '— ' + name : '';
-    formView.style.display = 'none';
-    thanksView.style.display = 'block';
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          name: name || 'Ẩn danh',
+          wish: wish,
+          time: new Date().toISOString()
+        })
+      });
+
+      thanksFrom.textContent = name ? '— ' + name : '';
+      formView.style.display = 'none';
+      thanksView.style.display = 'block';
+    } catch (err) {
+      wishError.textContent = 'Có lỗi khi gửi, vui lòng thử lại.';
+      wishError.style.display = 'block';
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Gửi lời chúc';
   });
 
   document.getElementById('againBtn').addEventListener('click', function () {
     nameInput.value = '';
     wishInput.value = '';
+    wishError.textContent = 'Bạn chưa viết lời chúc.';
     wishError.style.display = 'none';
     thanksView.style.display = 'none';
     formView.style.display = 'block';

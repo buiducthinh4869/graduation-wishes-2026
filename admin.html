@@ -314,7 +314,7 @@
   animate();
 
   // ---- Password gate ----
-  const STORAGE_KEY = 'graduation_wishes';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwIrdfYcFAESgUl5OIQZdGbdotb5d_-SkUAvOv1mbXTbn23ggKxSuAvvfBEnv6PMFEp/exec';
   const ADMIN_PASSWORD = '112911Thinh@';
   const gateForm = document.getElementById('gateForm');
   const gateArea = document.getElementById('gateArea');
@@ -342,10 +342,21 @@
     return `ngày ${pad(d.getDate())} tháng ${pad(d.getMonth() + 1)} năm ${d.getFullYear()}, ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   }
 
-  function renderWishes() {
-    const wishes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  async function renderWishes() {
     const list = document.getElementById('wishList');
     const countEl = document.getElementById('wishCount');
+    list.innerHTML = `<div class="empty-state"><p>Đang tải...</p></div>`;
+
+    let wishes = [];
+    try {
+      const res = await fetch(SCRIPT_URL, { cache: 'no-store' });
+      wishes = await res.json();
+    } catch (err) {
+      list.innerHTML = `<div class="empty-state"><p>Không tải được lời chúc, vui lòng thử lại.</p></div>`;
+      countEl.textContent = '';
+      return;
+    }
+
     countEl.textContent = wishes.length + ' lời chúc';
 
     if (wishes.length === 0) {
@@ -374,9 +385,17 @@
     return div.innerHTML;
   }
 
-  document.getElementById('clearBtn').addEventListener('click', function () {
+  document.getElementById('clearBtn').addEventListener('click', async function () {
     if (confirm('Xóa tất cả lời chúc? Không thể hoàn tác.')) {
-      localStorage.removeItem(STORAGE_KEY);
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'clear', password: ADMIN_PASSWORD })
+        });
+      } catch (err) {
+        // ignore, renderWishes will show current state
+      }
       renderWishes();
     }
   });
