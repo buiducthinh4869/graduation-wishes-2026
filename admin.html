@@ -17,7 +17,10 @@
     color: #2C2A24;
   }
   body {
-    background: linear-gradient(180deg, #E8F5E9 0%, #FCE4EC 100%);
+    background: linear-gradient(rgba(255,240,245,0.55), rgba(255,240,245,0.55)), url('assets/bg.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
     position: relative;
     overflow-x: hidden;
   }
@@ -26,46 +29,6 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-  }
-  .corner-img {
-    position: fixed;
-    z-index: 0;
-    pointer-events: none;
-  }
-  #corner-tl {
-    top: -10px;
-    left: -15px;
-    width: 210px;
-    opacity: 0.88;
-    transform: rotate(8deg);
-  }
-  #corner-tr {
-    top: 40px;
-    right: -15px;
-    width: 200px;
-    opacity: 0.88;
-    transform: rotate(-6deg);
-  }
-  #corner-bl {
-    bottom: -20px;
-    left: -10px;
-    width: 220px;
-    opacity: 0.88;
-    transform: rotate(-8deg);
-  }
-  #corner-br {
-    bottom: 30px;
-    right: 20px;
-    width: 180px;
-    opacity: 0.88;
-    transform: rotate(4deg);
-  }
-  @media (max-width: 600px) {
-    .corner-img { width: 125px; }
-    #corner-tr { display: none; }
-    #corner-tl { top: -5px; left: -8px; }
-    #corner-bl { bottom: -10px; left: -5px; }
-    #corner-br { bottom: 10px; right: -5px; }
   }
   .back-link {
     position: relative;
@@ -92,11 +55,12 @@
   .card {
     width: 100%;
     max-width: 460px;
-    background: #FFFFFF;
-    border: 1.5px solid #F8BBD9;
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 200, 220, 0.6);
     border-radius: 24px;
     padding: 40px 36px;
-    box-shadow: 0 20px 50px rgba(240, 150, 180, 0.18);
+    box-shadow: 0 8px 32px rgba(180, 120, 140, 0.15);
   }
   .card.wide {
     max-width: 640px;
@@ -244,11 +208,6 @@
 </head>
 <body>
 <canvas id="particles"></canvas>
-<img class="corner-img" id="corner-tl" src="assets/img4.jpg" alt="">
-<img class="corner-img" id="corner-tr" src="assets/img2.png" alt="">
-<img class="corner-img" id="corner-bl" src="assets/img1.png" alt="">
-<img class="corner-img" id="corner-br" src="assets/img3.png" alt="">
-
 <a class="back-link" href="index.html">← Quay lại</a>
 
 <div class="wrap">
