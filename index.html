@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gửi lời chúc đến Thịnh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F2EB;
+    --charcoal: #2C2A24;
+    --muted: #A89F8C;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    min-height: 100%;
+  }
+  canvas#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .wrap {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(44, 42, 36, 0.08);
+    border-radius: 16px;
+    padding: 44px 36px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 20px 60px rgba(44, 42, 36, 0.06);
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 28px;
+    text-align: center;
+    margin: 0 0 12px;
+    color: var(--charcoal);
+  }
+  .subtext {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+    text-align: center;
+    margin: 0 0 32px;
+  }
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--charcoal);
+  }
+  .field {
+    margin-bottom: 20px;
+  }
+  input[type="text"],
+  textarea {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(44, 42, 36, 0.15);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s ease;
+    resize: none;
+  }
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: var(--muted);
+  }
+  textarea {
+    height: 120px;
+    font-family: 'Inter', sans-serif;
+  }
+  ::placeholder {
+    color: #B8AF9C;
+  }
+  button {
+    width: 100%;
+    padding: 14px;
+    background: var(--charcoal);
+    color: var(--cream);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  button:hover {
+    opacity: 0.88;
+  }
+  .thanks {
+    text-align: center;
+    padding: 20px 0;
+  }
+  .thanks h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 26px;
+    margin: 0 0 12px;
+  }
+  .thanks p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .nav-link {
+    display: block;
+    text-align: center;
+    margin-top: 28px;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-link:hover {
+    color: var(--charcoal);
+  }
+  .error-msg {
+    font-size: 12px;
+    color: #A85C4D;
+    margin: -10px 0 16px;
+  }
+  @media (max-width: 480px) {
+    .card {
+      padding: 32px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="wrap">
+  <div class="card">
+    <div class="eyebrow">lễ tốt nghiệp · 2026</div>
+    <h1>Gửi lời chúc đến Thịnh</h1>
+    <p class="subtext">Lời chúc của bạn sẽ được lưu lại và chỉ mình Thịnh đọc được.</p>
+
+    <div id="formArea">
+      <form id="wishForm">
+        <div class="field">
+          <label for="name">Tên của bạn</label>
+          <input type="text" id="name" placeholder="Bạn bè, gia đình, hoặc ẩn danh...">
+        </div>
+        <div class="field">
+          <label for="wish">Lời chúc</label>
+          <textarea id="wish" placeholder="Viết gì đó từ trái tim..." required></textarea>
+        </div>
+        <button type="submit">Gửi lời chúc</button>
+      </form>
+    </div>
+
+    <a class="nav-link" href="admin.html">Thịnh đọc lời chúc →</a>
+  </div>
+</div>
+
+<script>
+  // ---- Particle animation ----
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  const colors = ['#C8B99A', '#D4C5A9', '#E2D8C5', '#B8A888', '#C9BB9F'];
+  let particles = [];
+  let W, H;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function makeParticle(initial) {
+    return {
+      x: Math.random() * W,
+      y: initial ? Math.random() * H : H + Math.random() * 40,
+      r: 1 + Math.random() * 2,
+      speed: 0.15 + Math.random() * 0.35,
+      wobble: Math.random() * Math.PI * 2,
+      wobbleSpeed: 0.005 + Math.random() * 0.01,
+      wobbleAmp: 0.3 + Math.random() * 0.6,
+      opacity: 0.15 + Math.random() * 0.25,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    };
+  }
+
+  for (let i = 0; i < 60; i++) particles.push(makeParticle(true));
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of particles) {
+      p.y -= p.speed;
+      p.wobble += p.wobbleSpeed;
+      p.x += Math.sin(p.wobble) * p.wobbleAmp * 0.1;
+
+      if (p.y < -10) {
+        p.y = H + 10;
+        p.x = Math.random() * W;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // ---- Wish form ----
+  const form = document.getElementById('wishForm');
+  const formArea = document.getElementById('formArea');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const wish = document.getElementById('wish').value.trim();
+    if (!wish) return;
+
+    const wishes = JSON.parse(localStorage.getItem('graduationWishes') || '[]');
+    wishes.push({
+      name: name || 'Ẩn danh',
+      wish: wish,
+      time: new Date().toISOString()
+    });
+    localStorage.setItem('graduationWishes', JSON.stringify(wishes));
+
+    formArea.innerHTML = `
+      <div class="thanks">
+        <h2>Cảm ơn bạn!</h2>
+        <p>Lời chúc của bạn đã được gửi đến Thịnh.</p>
+      </div>
+    `;
+  });
+</script>
+</body>
+</html>

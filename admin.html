@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lời chúc dành cho Thịnh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F2EB;
+    --charcoal: #2C2A24;
+    --muted: #A89F8C;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    min-height: 100%;
+  }
+  canvas#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .topnav {
+    position: relative;
+    z-index: 1;
+    padding: 20px 24px;
+  }
+  .topnav a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .topnav a:hover {
+    color: var(--charcoal);
+  }
+  .wrap {
+    position: relative;
+    z-index: 1;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px 20px 60px;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(44, 42, 36, 0.08);
+    border-radius: 16px;
+    padding: 44px 36px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 20px 60px rgba(44, 42, 36, 0.06);
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 28px;
+    text-align: center;
+    margin: 0 0 12px;
+    color: var(--charcoal);
+  }
+  .subtext {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+    text-align: center;
+    margin: 0 0 32px;
+  }
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--charcoal);
+  }
+  .field {
+    margin-bottom: 20px;
+  }
+  input[type="password"] {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(44, 42, 36, 0.15);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  input[type="password"]:focus {
+    border-color: var(--muted);
+  }
+  button {
+    width: 100%;
+    padding: 14px;
+    background: var(--charcoal);
+    color: var(--cream);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  button:hover {
+    opacity: 0.88;
+  }
+  .error-msg {
+    font-size: 12px;
+    color: #A85C4D;
+    margin: -10px 0 16px;
+  }
+  .wide {
+    max-width: 640px;
+  }
+  .wishes-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .wishes-header h1 {
+    text-align: left;
+    margin: 0;
+  }
+  .count {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .wish-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .wish-card {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(44, 42, 36, 0.08);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .wish-name {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--charcoal);
+  }
+  .wish-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    white-space: pre-wrap;
+    margin-bottom: 10px;
+  }
+  .wish-time {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .empty-msg {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 30px 0;
+  }
+  .clear-btn {
+    background: transparent;
+    color: #A85C4D;
+    border: 1px solid rgba(168, 92, 77, 0.35);
+    font-size: 12px;
+    padding: 10px;
+  }
+  .clear-btn:hover {
+    opacity: 1;
+    background: rgba(168, 92, 77, 0.08);
+  }
+  @media (max-width: 480px) {
+    .card {
+      padding: 32px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="topnav"><a href="index.html">← Quay lại</a></div>
+
+<div class="wrap">
+  <div id="gateArea" class="card">
+    <div class="eyebrow">lễ tốt nghiệp · 2026</div>
+    <h1>Lời chúc dành cho Thịnh</h1>
+    <p class="subtext">Nhập mật khẩu để xem những lời chúc đã được gửi.</p>
+    <form id="gateForm">
+      <div class="field">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+      </div>
+      <div id="gateError" class="error-msg" style="display:none;">Mật khẩu không đúng.</div>
+      <button type="submit">Xem lời chúc</button>
+    </form>
+  </div>
+
+  <div id="wishesArea" class="card wide" style="display:none;">
+    <div class="wishes-header">
+      <h1>Lời chúc dành cho Thịnh</h1>
+      <span class="count" id="wishCount"></span>
+    </div>
+    <div id="wishList" class="wish-list"></div>
+    <button class="clear-btn" id="clearBtn">Xóa tất cả lời chúc</button>
+  </div>
+</div>
+
+<script>
+  // ---- Particle animation ----
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  const colors = ['#C8B99A', '#D4C5A9', '#E2D8C5', '#B8A888', '#C9BB9F'];
+  let particles = [];
+  let W, H;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function makeParticle(initial) {
+    return {
+      x: Math.random() * W,
+      y: initial ? Math.random() * H : H + Math.random() * 40,
+      r: 1 + Math.random() * 2,
+      speed: 0.15 + Math.random() * 0.35,
+      wobble: Math.random() * Math.PI * 2,
+      wobbleSpeed: 0.005 + Math.random() * 0.01,
+      wobbleAmp: 0.3 + Math.random() * 0.6,
+      opacity: 0.15 + Math.random() * 0.25,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    };
+  }
+
+  for (let i = 0; i < 60; i++) particles.push(makeParticle(true));
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of particles) {
+      p.y -= p.speed;
+      p.wobble += p.wobbleSpeed;
+      p.x += Math.sin(p.wobble) * p.wobbleAmp * 0.1;
+
+      if (p.y < -10) {
+        p.y = H + 10;
+        p.x = Math.random() * W;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // ---- Password gate ----
+  const ADMIN_PASSWORD = '112911Thinh@';
+  const gateForm = document.getElementById('gateForm');
+  const gateArea = document.getElementById('gateArea');
+  const gateError = document.getElementById('gateError');
+  const wishesArea = document.getElementById('wishesArea');
+
+  gateForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const input = document.getElementById('password').value;
+    if (input === ADMIN_PASSWORD) {
+      gateArea.style.display = 'none';
+      wishesArea.style.display = 'block';
+      renderWishes();
+    } else {
+      gateError.style.display = 'block';
+    }
+  });
+
+  function renderWishes() {
+    const wishes = JSON.parse(localStorage.getItem('graduationWishes') || '[]');
+    const list = document.getElementById('wishList');
+    const countEl = document.getElementById('wishCount');
+    countEl.textContent = wishes.length + ' lời chúc';
+
+    if (wishes.length === 0) {
+      list.innerHTML = '<div class="empty-msg">Chưa có lời chúc nào.</div>';
+      return;
+    }
+
+    const sorted = wishes.slice().sort((a, b) => new Date(b.time) - new Date(a.time));
+
+    list.innerHTML = sorted.map(w => {
+      const formattedTime = new Date(w.time).toLocaleString('vi-VN', {
+        dateStyle: 'long',
+        timeStyle: 'short'
+      });
+      return `
+        <div class="wish-card">
+          <div class="wish-name">${escapeHtml(w.name)}</div>
+          <div class="wish-text">${escapeHtml(w.wish)}</div>
+          <div class="wish-time">${formattedTime}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  document.getElementById('clearBtn').addEventListener('click', function () {
+    if (confirm('Bạn có chắc muốn xóa tất cả lời chúc? Hành động này không thể hoàn tác.')) {
+      localStorage.removeItem('graduationWishes');
+      renderWishes();
+    }
+  });
+</script>
+</body>
+</html>
