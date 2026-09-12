@@ -6,46 +6,73 @@
 <title>Gửi lời chúc đến Thịnh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --mint: #C8E6C4;
-    --mint2: #B2DFDB;
-    --pink: #F8BBD9;
-    --pink2: #F48FB1;
-    --blue: #BBDEFB;
-    --blue2: #90CAF9;
-    --white: #FAFAFA;
-    --charcoal: #2C2A24;
-    --accent: #C06080;
-    --sage: #5B8A6F;
-    --sage-dark: #4A7460;
-  }
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
     font-family: 'Nunito', sans-serif;
-    color: var(--charcoal);
+    color: #2C2A24;
   }
   body {
     background: linear-gradient(180deg, #E8F5E9 0%, #FCE4EC 100%);
+    position: relative;
+    overflow-x: hidden;
   }
   canvas#particles {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: 0;
     pointer-events: none;
   }
+  .corner-img {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+  }
+  #corner-tl {
+    top: -10px;
+    left: -15px;
+    width: 210px;
+    opacity: 0.88;
+    transform: rotate(8deg);
+  }
+  #corner-tr {
+    top: 40px;
+    right: -15px;
+    width: 200px;
+    opacity: 0.88;
+    transform: rotate(-6deg);
+  }
+  #corner-bl {
+    bottom: -20px;
+    left: -10px;
+    width: 220px;
+    opacity: 0.88;
+    transform: rotate(-8deg);
+  }
+  #corner-br {
+    bottom: 30px;
+    right: 20px;
+    width: 180px;
+    opacity: 0.88;
+    transform: rotate(4deg);
+  }
+  @media (max-width: 600px) {
+    .corner-img { width: 125px; }
+    #corner-tr { display: none; }
+    #corner-tl { top: -5px; left: -8px; }
+    #corner-bl { bottom: -10px; left: -5px; }
+    #corner-br { bottom: 10px; right: -5px; }
+  }
   .wrap {
     position: relative;
-    z-index: 1;
+    z-index: 10;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 32px 20px;
@@ -54,49 +81,38 @@
     width: 100%;
     max-width: 460px;
     background: #FFFFFF;
-    border: 1.5px solid var(--pink);
+    border: 1.5px solid #F8BBD9;
     border-radius: 24px;
     padding: 40px 36px;
     box-shadow: 0 20px 50px rgba(240, 150, 180, 0.18);
-    text-align: center;
-  }
-  .illustration {
-    width: 160px;
-    height: auto;
-    margin: 0 auto 16px;
-    display: block;
-    border: none;
   }
   .eyebrow {
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: #C06080;
     margin-bottom: 10px;
   }
   h1 {
     font-weight: 700;
     font-size: 28px;
-    margin: 0 0 12px;
-    color: var(--charcoal);
+    margin: 0 0 8px;
+    color: #2C2A24;
   }
   .subtext {
     font-size: 15px;
     font-weight: 400;
     line-height: 1.6;
-    color: #666;
+    color: #555555;
     margin: 0 0 28px;
-  }
-  form {
-    text-align: left;
   }
   label {
     display: block;
     font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #444;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #333333;
   }
   .field {
     margin-bottom: 20px;
@@ -110,27 +126,36 @@
     padding: 12px 16px;
     border: 1.5px solid #E0E0E0;
     border-radius: 12px;
-    background: var(--white);
-    color: var(--charcoal);
+    background: #FFFFFF;
+    color: #2C2A24;
     outline: none;
     transition: border-color 0.2s ease;
     resize: none;
   }
   input[type="text"]:focus,
   textarea:focus {
-    border-color: var(--pink2);
+    border-color: #F48FB1;
+    outline: none;
   }
   textarea {
-    height: 120px;
+    height: 130px;
+    line-height: 1.6;
   }
   ::placeholder {
     color: #AAA;
     font-weight: 400;
   }
+  .field-error {
+    font-size: 13px;
+    font-weight: 400;
+    color: #C06080;
+    margin-top: 4px;
+    display: none;
+  }
   button {
     width: 100%;
     padding: 14px;
-    background: var(--sage);
+    background: #5B8A6F;
     color: #FFFFFF;
     border: none;
     border-radius: 14px;
@@ -141,34 +166,41 @@
     transition: background 0.2s ease;
   }
   button:hover {
-    background: var(--sage-dark);
+    background: #4A7560;
   }
   .thanks {
-    padding: 10px 0;
+    display: none;
+    text-align: center;
   }
   .thanks h2 {
     font-weight: 700;
-    font-size: 22px;
-    margin: 4px 0 12px;
-    color: var(--charcoal);
+    font-size: 24px;
+    margin: 0 0 10px;
+    color: #2C2A24;
   }
-  .thanks p {
+  .thanks .from {
+    font-size: 15px;
+    color: #888888;
+    margin: 0 0 10px;
+  }
+  .thanks .note {
     font-size: 15px;
     font-weight: 400;
-    color: #666;
-    line-height: 1.6;
+    color: #555555;
+    margin: 0 0 24px;
   }
-  .nav-link {
-    display: block;
-    text-align: center;
-    margin-top: 26px;
+  .thanks button {
+    font-size: 14px;
+    padding: 12px;
+  }
+  .bottom-link {
+    margin-top: 20px;
     font-size: 13px;
-    font-weight: 400;
-    color: #999;
+    color: #999999;
     text-decoration: none;
   }
-  .nav-link:hover {
-    color: var(--accent);
+  .bottom-link:hover {
+    color: #666666;
   }
   @media (max-width: 480px) {
     .card {
@@ -179,11 +211,14 @@
 </head>
 <body>
 <canvas id="particles"></canvas>
+<img class="corner-img" id="corner-tl" src="assets/img4.jpg" alt="">
+<img class="corner-img" id="corner-tr" src="assets/img2.png" alt="">
+<img class="corner-img" id="corner-bl" src="assets/img1.png" alt="">
+<img class="corner-img" id="corner-br" src="assets/img3.png" alt="">
+
 <div class="wrap">
   <div class="card">
-    <img class="illustration" id="illustration" src="" alt="">
-
-    <div id="formArea">
+    <div id="formView">
       <div class="eyebrow">Lễ tốt nghiệp · 2026</div>
       <h1>Gửi lời chúc đến Thịnh</h1>
       <p class="subtext">Lời chúc của bạn sẽ được lưu lại và chỉ mình Thịnh đọc được.</p>
@@ -195,25 +230,29 @@
         </div>
         <div class="field">
           <label for="wish">Lời chúc</label>
-          <textarea id="wish" placeholder="Viết gì đó từ trái tim..." required></textarea>
+          <textarea id="wish" placeholder="Viết gì đó từ trái tim..."></textarea>
+          <div class="field-error" id="wishError">Bạn chưa viết lời chúc.</div>
         </div>
         <button type="submit">Gửi lời chúc</button>
       </form>
     </div>
 
-    <a class="nav-link" href="admin.html">Thịnh đọc lời chúc →</a>
+    <div class="thanks" id="thanksView">
+      <h2>Cảm ơn bạn! 🌸</h2>
+      <p class="from" id="thanksFrom"></p>
+      <p class="note">Thịnh sẽ đọc lời chúc của bạn.</p>
+      <button id="againBtn">Gửi thêm lời chúc</button>
+    </div>
   </div>
+
+  <a class="bottom-link" href="admin.html">Thịnh đọc lời chúc →</a>
 </div>
 
 <script>
-  // ---- Random illustration ----
-  const images = ['assets/img1.png', 'assets/img2.png', 'assets/img3.png'];
-  document.getElementById('illustration').src = images[Math.floor(Math.random() * images.length)];
-
   // ---- Particle animation ----
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
-  const colors = ['#F8BBD9', '#BBDEFB', '#C8E6C4', '#FFF9C4'];
+  const colors = ['#F8BBD9', '#BBDEFB', '#C8E6C4', '#FFF9C4', '#F0E6FF'];
   let particles = [];
   let W, H;
 
@@ -228,13 +267,13 @@
     return {
       x: Math.random() * W,
       y: initial ? Math.random() * H : H + Math.random() * 40,
-      r: 2 + Math.random() * 3,
+      r: 2 + Math.random() * 2,
       heart: Math.random() < 0.35,
       speed: 0.2 + Math.random() * 0.4,
       wobble: Math.random() * Math.PI * 2,
       wobbleSpeed: 0.005 + Math.random() * 0.01,
       wobbleAmp: 0.3 + Math.random() * 0.7,
-      opacity: 0.3 + Math.random() * 0.2,
+      opacity: 0.3 + Math.random() * 0.25,
       color: colors[Math.floor(Math.random() * colors.length)]
     };
   }
@@ -288,30 +327,45 @@
   animate();
 
   // ---- Wish form ----
+  const STORAGE_KEY = 'graduation_wishes';
   const form = document.getElementById('wishForm');
-  const formArea = document.getElementById('formArea');
-  const illustrationSrc = document.getElementById('illustration').src;
+  const formView = document.getElementById('formView');
+  const thanksView = document.getElementById('thanksView');
+  const thanksFrom = document.getElementById('thanksFrom');
+  const wishError = document.getElementById('wishError');
+  const nameInput = document.getElementById('name');
+  const wishInput = document.getElementById('wish');
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const wish = document.getElementById('wish').value.trim();
-    if (!wish) return;
+    const name = nameInput.value.trim();
+    const wish = wishInput.value.trim();
 
-    const wishes = JSON.parse(localStorage.getItem('graduationWishes') || '[]');
+    if (!wish) {
+      wishError.style.display = 'block';
+      return;
+    }
+    wishError.style.display = 'none';
+
+    const wishes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     wishes.push({
       name: name || 'Ẩn danh',
       wish: wish,
       time: new Date().toISOString()
     });
-    localStorage.setItem('graduationWishes', JSON.stringify(wishes));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes));
 
-    formArea.innerHTML = `
-      <div class="thanks">
-        <h2>Cảm ơn bạn! 🌸</h2>
-        <p>Lời chúc ấm áp của bạn đã được gửi đến Thịnh.<br>Chúc bạn một ngày thật vui!</p>
-      </div>
-    `;
+    thanksFrom.textContent = name ? '— ' + name : '';
+    formView.style.display = 'none';
+    thanksView.style.display = 'block';
+  });
+
+  document.getElementById('againBtn').addEventListener('click', function () {
+    nameInput.value = '';
+    wishInput.value = '';
+    wishError.style.display = 'none';
+    thanksView.style.display = 'none';
+    formView.style.display = 'block';
   });
 </script>
 </body>

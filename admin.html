@@ -6,100 +6,119 @@
 <title>Lời chúc dành cho Thịnh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --mint: #C8E6C4;
-    --mint2: #B2DFDB;
-    --pink: #F8BBD9;
-    --pink2: #F48FB1;
-    --blue: #BBDEFB;
-    --blue2: #90CAF9;
-    --white: #FAFAFA;
-    --charcoal: #2C2A24;
-    --accent: #C06080;
-    --sage: #5B8A6F;
-    --sage-dark: #4A7460;
-  }
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
     font-family: 'Nunito', sans-serif;
-    color: var(--charcoal);
+    color: #2C2A24;
   }
   body {
     background: linear-gradient(180deg, #E8F5E9 0%, #FCE4EC 100%);
+    position: relative;
+    overflow-x: hidden;
   }
   canvas#particles {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: 0;
     pointer-events: none;
   }
-  .topnav {
-    position: relative;
-    z-index: 1;
-    padding: 20px 24px;
+  .corner-img {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
   }
-  .topnav a {
+  #corner-tl {
+    top: -10px;
+    left: -15px;
+    width: 210px;
+    opacity: 0.88;
+    transform: rotate(8deg);
+  }
+  #corner-tr {
+    top: 40px;
+    right: -15px;
+    width: 200px;
+    opacity: 0.88;
+    transform: rotate(-6deg);
+  }
+  #corner-bl {
+    bottom: -20px;
+    left: -10px;
+    width: 220px;
+    opacity: 0.88;
+    transform: rotate(-8deg);
+  }
+  #corner-br {
+    bottom: 30px;
+    right: 20px;
+    width: 180px;
+    opacity: 0.88;
+    transform: rotate(4deg);
+  }
+  @media (max-width: 600px) {
+    .corner-img { width: 125px; }
+    #corner-tr { display: none; }
+    #corner-tl { top: -5px; left: -8px; }
+    #corner-bl { bottom: -10px; left: -5px; }
+    #corner-br { bottom: 10px; right: -5px; }
+  }
+  .back-link {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    margin: 20px;
     font-size: 14px;
-    font-weight: 600;
-    color: var(--accent);
+    font-weight: 400;
+    color: #888888;
     text-decoration: none;
   }
-  .topnav a:hover {
-    color: var(--pink2);
+  .back-link:hover {
+    color: #555555;
   }
   .wrap {
     position: relative;
-    z-index: 1;
-    min-height: calc(100vh - 64px);
+    z-index: 10;
+    min-height: calc(100vh - 68px);
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 24px 20px 60px;
+    padding: 20px 20px 60px;
   }
   .card {
     width: 100%;
     max-width: 460px;
     background: #FFFFFF;
-    border: 1.5px solid var(--pink);
+    border: 1.5px solid #F8BBD9;
     border-radius: 24px;
     padding: 40px 36px;
     box-shadow: 0 20px 50px rgba(240, 150, 180, 0.18);
-    text-align: center;
   }
-  .illustration {
-    width: 160px;
-    height: auto;
-    margin: 0 auto 16px;
-    display: block;
-    border: none;
-  }
-  .illustration.small {
-    width: 120px;
-    margin: 0 auto 12px;
+  .card.wide {
+    max-width: 640px;
   }
   h1 {
     font-weight: 700;
     font-size: 24px;
-    margin: 0 0 22px;
-    color: var(--charcoal);
+    margin: 0 0 8px;
+    color: #2C2A24;
   }
-  form {
-    text-align: left;
+  .subtext {
+    font-size: 15px;
+    font-weight: 400;
+    color: #555555;
+    margin: 0 0 24px;
   }
   label {
     display: block;
     font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #444;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #333333;
   }
   .field {
     margin-bottom: 20px;
@@ -112,13 +131,14 @@
     padding: 12px 16px;
     border: 1.5px solid #E0E0E0;
     border-radius: 12px;
-    background: var(--white);
-    color: var(--charcoal);
+    background: #FFFFFF;
+    color: #2C2A24;
     outline: none;
     transition: border-color 0.2s ease;
   }
   input[type="password"]:focus {
-    border-color: var(--pink2);
+    border-color: #F48FB1;
+    outline: none;
   }
   ::placeholder {
     color: #AAA;
@@ -127,7 +147,7 @@
   button {
     width: 100%;
     padding: 14px;
-    background: var(--sage);
+    background: #5B8A6F;
     color: #FFFFFF;
     border: none;
     border-radius: 14px;
@@ -138,17 +158,14 @@
     transition: background 0.2s ease;
   }
   button:hover {
-    background: var(--sage-dark);
+    background: #4A7560;
   }
   .error-msg {
     font-size: 14px;
-    font-weight: 600;
-    color: var(--accent);
+    font-weight: 400;
+    color: #C06080;
     margin: -10px 0 16px;
-  }
-  .wide {
-    max-width: 640px;
-    text-align: left;
+    display: none;
   }
   .wishes-header {
     display: flex;
@@ -160,59 +177,63 @@
     margin: 0;
   }
   .count {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
+    font-size: 14px;
+    font-weight: 400;
+    color: #888888;
   }
   .wish-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 28px;
+    gap: 0;
   }
   .wish-card {
     background: #FFFFFF;
-    border: 1px solid var(--pink);
+    border: 1px solid #F8BBD9;
     border-radius: 16px;
-    padding: 20px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
   }
   .wish-name {
     font-weight: 700;
     font-size: 16px;
-    margin-bottom: 8px;
-    color: var(--charcoal);
+    color: #2C2A24;
   }
   .wish-text {
     font-weight: 400;
     font-size: 15px;
-    line-height: 1.7;
-    color: #444;
+    line-height: 1.75;
+    color: #444444;
     white-space: pre-wrap;
-    margin-bottom: 10px;
+    margin: 8px 0;
   }
   .wish-time {
     font-weight: 400;
     font-size: 13px;
-    color: #999;
+    color: #999999;
   }
   .empty-state {
     text-align: center;
-    padding: 10px 0 30px;
+    padding: 10px 0;
   }
   .empty-state p {
-    font-size: 15px;
-    font-weight: 600;
-    color: #999;
+    font-size: 16px;
+    font-weight: 400;
+    color: #888888;
   }
   .clear-btn {
-    background: transparent;
-    color: var(--accent);
-    border: 1.5px solid var(--pink2);
-    font-size: 14px;
-    padding: 12px;
+    width: auto;
+    display: inline-block;
+    background: #f5f5f5;
+    color: #999999;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 24px;
   }
   .clear-btn:hover {
-    background: rgba(244, 143, 177, 0.1);
+    background: #eeeeee;
   }
   @media (max-width: 480px) {
     .card {
@@ -223,44 +244,42 @@
 </head>
 <body>
 <canvas id="particles"></canvas>
-<div class="topnav"><a href="index.html">← Quay lại</a></div>
+<img class="corner-img" id="corner-tl" src="assets/img4.jpg" alt="">
+<img class="corner-img" id="corner-tr" src="assets/img2.png" alt="">
+<img class="corner-img" id="corner-bl" src="assets/img1.png" alt="">
+<img class="corner-img" id="corner-br" src="assets/img3.png" alt="">
+
+<a class="back-link" href="index.html">← Quay lại</a>
 
 <div class="wrap">
   <div id="gateArea" class="card">
-    <img class="illustration" id="gateIllustration" src="" alt="">
-    <h1 style="text-align:center;">Đọc lời chúc</h1>
+    <h1>Đọc lời chúc</h1>
+    <p class="subtext">Nhập mật khẩu để xem lời chúc.</p>
     <form id="gateForm">
       <div class="field">
         <label for="password">Mật khẩu</label>
         <input type="password" id="password" placeholder="••••••••" required>
       </div>
-      <div id="gateError" class="error-msg" style="display:none;">Mật khẩu không đúng.</div>
+      <div id="gateError" class="error-msg">Mật khẩu không đúng.</div>
       <button type="submit">Xem lời chúc</button>
     </form>
   </div>
 
   <div id="wishesArea" class="card wide" style="display:none;">
     <div class="wishes-header">
-      <h1>Lời chúc dành cho Thịnh</h1>
+      <h1>Lời chúc dành cho Thịnh 🌸</h1>
       <span class="count" id="wishCount"></span>
     </div>
     <div id="wishList" class="wish-list"></div>
-    <button class="clear-btn" id="clearBtn">Xóa tất cả</button>
+    <button class="clear-btn" id="clearBtn">Xóa tất cả lời chúc</button>
   </div>
 </div>
 
 <script>
-  // ---- Random illustration ----
-  const images = ['assets/img1.png', 'assets/img2.png', 'assets/img3.png'];
-  function randomImage() {
-    return images[Math.floor(Math.random() * images.length)];
-  }
-  document.getElementById('gateIllustration').src = randomImage();
-
   // ---- Particle animation ----
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
-  const colors = ['#F8BBD9', '#BBDEFB', '#C8E6C4', '#FFF9C4'];
+  const colors = ['#F8BBD9', '#BBDEFB', '#C8E6C4', '#FFF9C4', '#F0E6FF'];
   let particles = [];
   let W, H;
 
@@ -275,13 +294,13 @@
     return {
       x: Math.random() * W,
       y: initial ? Math.random() * H : H + Math.random() * 40,
-      r: 2 + Math.random() * 3,
+      r: 2 + Math.random() * 2,
       heart: Math.random() < 0.35,
       speed: 0.2 + Math.random() * 0.4,
       wobble: Math.random() * Math.PI * 2,
       wobbleSpeed: 0.005 + Math.random() * 0.01,
       wobbleAmp: 0.3 + Math.random() * 0.7,
-      opacity: 0.3 + Math.random() * 0.2,
+      opacity: 0.3 + Math.random() * 0.25,
       color: colors[Math.floor(Math.random() * colors.length)]
     };
   }
@@ -335,6 +354,7 @@
   animate();
 
   // ---- Password gate ----
+  const STORAGE_KEY = 'graduation_wishes';
   const ADMIN_PASSWORD = '112911Thinh@';
   const gateForm = document.getElementById('gateForm');
   const gateArea = document.getElementById('gateArea');
@@ -353,8 +373,17 @@
     }
   });
 
+  function pad(n) {
+    return String(n).padStart(2, '0');
+  }
+
+  function formatVietnameseDate(iso) {
+    const d = new Date(iso);
+    return `ngày ${pad(d.getDate())} tháng ${pad(d.getMonth() + 1)} năm ${d.getFullYear()}, ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
   function renderWishes() {
-    const wishes = JSON.parse(localStorage.getItem('graduationWishes') || '[]');
+    const wishes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     const list = document.getElementById('wishList');
     const countEl = document.getElementById('wishCount');
     countEl.textContent = wishes.length + ' lời chúc';
@@ -362,7 +391,6 @@
     if (wishes.length === 0) {
       list.innerHTML = `
         <div class="empty-state">
-          <img class="illustration small" src="${randomImage()}" alt="">
           <p>Chưa có lời chúc nào.</p>
         </div>
       `;
@@ -371,19 +399,13 @@
 
     const sorted = wishes.slice().sort((a, b) => new Date(b.time) - new Date(a.time));
 
-    list.innerHTML = sorted.map(w => {
-      const formattedTime = new Date(w.time).toLocaleString('vi-VN', {
-        dateStyle: 'long',
-        timeStyle: 'short'
-      });
-      return `
-        <div class="wish-card">
-          <div class="wish-name">${escapeHtml(w.name)}</div>
-          <div class="wish-text">${escapeHtml(w.wish)}</div>
-          <div class="wish-time">${formattedTime}</div>
-        </div>
-      `;
-    }).join('');
+    list.innerHTML = sorted.map(w => `
+      <div class="wish-card">
+        <div class="wish-name">${escapeHtml(w.name)}</div>
+        <div class="wish-text">${escapeHtml(w.wish)}</div>
+        <div class="wish-time">${formatVietnameseDate(w.time)}</div>
+      </div>
+    `).join('');
   }
 
   function escapeHtml(str) {
@@ -393,8 +415,8 @@
   }
 
   document.getElementById('clearBtn').addEventListener('click', function () {
-    if (confirm('Bạn có chắc muốn xóa tất cả lời chúc? Hành động này không thể hoàn tác.')) {
-      localStorage.removeItem('graduationWishes');
+    if (confirm('Xóa tất cả lời chúc? Không thể hoàn tác.')) {
+      localStorage.removeItem(STORAGE_KEY);
       renderWishes();
     }
   });
