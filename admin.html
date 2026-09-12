@@ -17,10 +17,11 @@
     color: #2C2A24;
   }
   body {
-    background: linear-gradient(rgba(255,240,245,0.40), rgba(255,240,245,0.40)), url('assets/bg.jpg');
+    background: linear-gradient(rgba(30, 20, 50, 0.18), rgba(30, 20, 50, 0.18)), url('assets/bg.jpg');
     background-size: cover;
-    background-position: center 20%;
+    background-position: center center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     position: relative;
     overflow-x: hidden;
   }
@@ -55,12 +56,12 @@
   .card {
     width: 100%;
     max-width: 460px;
-    background: rgba(255, 255, 255, 0.90);
-    backdrop-filter: blur(8px);
-    border: 1.5px solid rgba(255, 200, 220, 0.6);
+    background: rgba(255, 252, 248, 0.92);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(200, 170, 140, 0.5);
     border-radius: 24px;
     padding: 40px 36px;
-    box-shadow: 0 8px 32px rgba(180, 120, 140, 0.15);
+    box-shadow: 0 8px 40px rgba(60, 40, 80, 0.18);
   }
   .card.wide {
     max-width: 640px;
@@ -101,7 +102,7 @@
     transition: border-color 0.2s ease;
   }
   input[type="password"]:focus {
-    border-color: #F48FB1;
+    border-color: #B09CC8;
     outline: none;
   }
   ::placeholder {
@@ -111,7 +112,7 @@
   button {
     width: 100%;
     padding: 14px;
-    background: #5B8A6F;
+    background: #6B5B8A;
     color: #FFFFFF;
     border: none;
     border-radius: 14px;
@@ -122,7 +123,7 @@
     transition: background 0.2s ease;
   }
   button:hover {
-    background: #4A7560;
+    background: #574875;
   }
   .error-msg {
     font-size: 14px;
